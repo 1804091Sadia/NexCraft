@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Training | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+<body class="module-sidebar-page" data-role="learner" data-page="training" data-auto-sidebar="true">
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="/learner/dashboard.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="/learner/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="/learner/profile.html">
+                    Profile
+                </a>
+
+                <a href="/learner/jobs.html">
+                    Jobs
+                </a>
+
+                <a href="/learner/training.html" class="active">
+                    Training
+                </a>
+                <a href="/messages.html">Messages</a>
+                <a href="/settings.html">Settings</a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <button class="btn btn-outline" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="page-container">
+
+        <div class="container">
+
+            <div class="dashboard-header" style="margin-bottom:30px;">
+
+                <h1>
+                    Training Programs
+                </h1>
+
+                <p>
+                    Explore available training programs
+                    and track your learning progress.
+                </p>
+
+            </div>
+
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+            <section>
+
+                <h2 style="margin-bottom:20px;">
+                    Available Programs
+                </h2>
+
+                <!-- Filters (FR-14) -->
+                <form id="programFilters" class="card" style="padding:20px;margin-bottom:20px;display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:15px;align-items:end;">
+                    <div class="form-group" style="margin:0;">
+                        <label for="pq">Search</label>
+                        <input id="pq" class="form-control" placeholder="Title or keyword">
+                    </div>
+                    <div class="form-group" style="margin:0;">
+                        <label for="pcategory">Category</label>
+                        <select id="pcategory" class="form-control"><option value="">All categories</option></select>
+                    </div>
+                    <div class="form-group" style="margin:0;">
+                        <label for="pmode">Mode</label>
+                        <select id="pmode" class="form-control">
+                            <option value="">Any mode</option>
+                            <option>Online</option><option>Offline</option><option>Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin:0;">
+                        <label for="plevel">Level</label>
+                        <select id="plevel" class="form-control">
+                            <option value="">Any level</option>
+                            <option>Beginner</option><option>Intermediate</option><option>Advanced</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin:0;">
+                        <label for="pskill">Skill</label>
+                        <input id="pskill" class="form-control" placeholder="e.g. MongoDB">
+                    </div>
+                    <button type="button" id="clearProgramFilters" class="btn btn-outline">Clear</button>
+                </form>
+
+                <div id="programsContainer" style="
+                    display:grid;
+                    grid-template-columns:
+                        repeat(auto-fill, minmax(280px, 1fr));
+                    gap:20px;
+                ">
+
+                    <div class="card">
+                        Loading programs...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section style="margin-top:40px;">
+
+                <h2 style="margin-bottom:20px;">
+                    My Training
+                </h2>
+
+                <div id="enrollmentsContainer">
+
+                    <div class="card">
+                        Loading enrollments...
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+
+    <script src="/learner/js/training.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="any" data-page="settings">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Settings</h1>
+                    <p>Your account details, password and portal.</p>
+                </div>
+            </div>
+
+            <form id="nameForm" class="panel" novalidate>
+                <div class="panel-head"><h2>Account</h2></div>
+                <div class="panel-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName" class="required">Full name</label>
+                            <input id="fullName" class="form-control" maxlength="80" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email</label>
+                            <input id="emailAddress" class="form-control" disabled>
+                            <p class="form-hint">Your email is your login and cannot be changed here.</p>
+                        </div>
+                    </div>
+                    <div class="form-actions"><button type="submit" class="btn btn-primary">Save name</button></div>
+                </div>
+            </form>
+
+            <form id="passwordForm" class="panel" novalidate>
+                <div class="panel-head"><h2>Change password</h2></div>
+                <div class="panel-body">
+                    <div class="form-grid">
+                        <div class="form-group span-2">
+                            <label for="currentPassword" class="required">Current password</label>
+                            <input id="currentPassword" type="password" class="form-control" autocomplete="current-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword" class="required">New password</label>
+                            <input id="newPassword" type="password" class="form-control" autocomplete="new-password" aria-describedby="pwHint">
+                            <p class="form-hint" id="pwHint">At least 8 characters, with a letter and a number.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword" class="required">Confirm new password</label>
+                            <input id="confirmPassword" type="password" class="form-control" autocomplete="new-password">
+                        </div>
+                    </div>
+                    <div class="form-actions"><button type="submit" class="btn btn-primary">Change password</button></div>
+                </div>
+            </form>
+
+            <section class="panel" id="dangerPanel" style="border-color:#fecaca;">
+                <div class="panel-head"><h2>Delete account</h2></div>
+                <div class="panel-body">
+                    <p class="muted" style="margin-bottom:10px;">
+                        This permanently deletes your login, profile, CV, photo, applications, enrollments,
+                        certificates, badges and notifications. Messages you sent to others stay with them,
+                        shown as from "Deleted user". Job posts and programs you own are closed.
+                        This cannot be undone.
+                    </p>
+                    <button type="button" class="btn btn-danger" id="deleteAccount">Delete my account…</button>
+                </div>
+            </section>
+
+            <section class="panel" id="portalPanel" hidden>
+                <div class="panel-head"><h2>Portal</h2></div>
+                <div class="panel-body">
+                    <p class="muted" style="margin-bottom:14px;">You hold both the Learner and Trainer roles. Choose which portal opens when you log in.</p>
+                    <div id="portalButtons" style="display:flex;gap:10px;flex-wrap:wrap;"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/js/settings.js"></script>
+</body>
+</html>

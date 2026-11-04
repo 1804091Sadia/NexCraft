@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexCraft - Job Details</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body class="module-sidebar-page" data-role="learner" data-page="jobs" data-auto-sidebar="true">
+
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="/learner/dashboard.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="/learner/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="/learner/profile.html">
+                    Profile
+                </a>
+
+                <a href="/learner/jobs.html" class="active">
+                    Jobs
+                </a>
+                <a href="/messages.html">Messages</a>
+                <a href="/settings.html">Settings</a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button class="btn btn-outline" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="page-container">
+
+        <div class="container">
+
+
+            <!-- Back -->
+
+            <div style="margin-bottom:20px;">
+
+                <a href="/learner/jobs.html" class="btn btn-secondary">
+                    ← Back to Jobs
+                </a>
+
+            </div>
+
+
+
+            <!-- Message -->
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+
+            <div id="jobContainer">
+
+                <div class="card">
+
+                    <p>
+                        Loading job details...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+
+    <script src="/learner/js/job-details.js"></script>
+
+
+</body>
+
+</html>

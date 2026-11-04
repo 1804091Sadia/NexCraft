@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Overview | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="admin" data-page="dashboard">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Platform Overview</h1>
+                    <p>Counts across NexCraft and what needs your attention.</p>
+                </div>
+            </div>
+
+            <div class="tiles" id="attention"></div>
+
+            <h2 style="font-size:17px;margin-bottom:12px;">Platform</h2>
+            <div class="tiles" id="tiles">
+                <div class="tile"><div class="tile-label">Loading…</div><div class="tile-value">—</div></div>
+            </div>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Recent admin actions</h2>
+                    <a href="/admin/logs.html" class="btn btn-outline btn-sm">Full log</a>
+                </div>
+                <div id="recent"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NexCraft - Jobs</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body class="module-sidebar-page" data-role="learner" data-page="jobs" data-auto-sidebar="true">
+
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a href="/learner/dashboard.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="/learner/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="/learner/profile.html">
+                    Profile
+                </a>
+
+                <a href="/learner/jobs.html" class="active">
+                    Jobs
+                </a>
+                <a href="/messages.html">Messages</a>
+                <a href="/settings.html">Settings</a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button class="btn btn-outline" onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="page-container">
+
+        <div class="container">
+
+
+            <!-- Header -->
+
+            <div class="dashboard-header">
+
+                <div>
+
+                    <h1>
+                        Find Jobs
+                    </h1>
+
+                    <p>
+                        Explore opportunities available
+                        for your skills and career.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Search -->
+
+            <div class="card" style="margin-bottom:24px;padding:20px;">
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+                    gap:15px;
+                    align-items:end;
+                ">
+
+                    <div class="form-group">
+
+                        <label for="search">
+                            Search
+                        </label>
+
+                        <input type="text" id="search" class="form-control" placeholder="Job title or keyword">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input type="text" id="location" class="form-control" placeholder="Location">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="jobType">
+                            Job Type
+                        </label>
+
+                        <select id="jobType" class="form-control">
+
+                            <option value="">
+                                All Types
+                            </option>
+
+                            <option value="Full-time">
+                                Full-time
+                            </option>
+
+                            <option value="Part-time">
+                                Part-time
+                            </option>
+
+                            <option value="Internship">
+                                Internship
+                            </option>
+
+                            <option value="Contract">
+                                Contract
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" class="form-control">
+                            <option value="">All categories</option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="skill">
+                            Skill
+                        </label>
+
+                        <input type="text" id="skill" class="form-control" placeholder="e.g. JavaScript">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salaryMin">
+                            Min. salary (BDT / month)
+                        </label>
+
+                        <input type="number" id="salaryMin" class="form-control" min="0" step="1000" placeholder="Any">
+
+                    </div>
+
+
+                    <button id="searchButton" class="btn btn-primary">
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Message -->
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+
+            <!-- Jobs -->
+
+            <div id="jobsContainer" style="
+                display:grid;
+                grid-template-columns:
+                    repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+                gap:20px;
+            ">
+
+                <div class="card">
+
+                    <p>
+                        Loading jobs...
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+
+    <script src="/learner/js/jobs.js"></script>
+
+
+</body>
+
+</html>

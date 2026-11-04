@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <nav class="navbar">
+
+            <!-- Logo -->
+
+            <a href="/index.html" class="logo">
+
+                <span class="logo-mark">N</span>
+
+                <span>NexCraft</span>
+
+            </a>
+
+
+            <!-- Navigation -->
+
+            <div class="nav-links">
+
+                <a href="/index.html">
+                    Home
+                </a>
+
+                <a href="/login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- Right side -->
+
+            <div class="nav-actions">
+
+                <a href="/login.html" class="btn btn-outline">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- Mobile menu -->
+
+            <button type="button" class="menu-toggle" aria-label="Open menu">
+                ☰
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= REGISTER ================= -->
+
+    <main class="auth-page">
+
+        <div class="auth-card" style="max-width:520px;">
+
+            <!-- Back -->
+
+            <a href="/index.html" class="auth-back">
+                ← Back to Home
+            </a>
+
+
+            <!-- Header -->
+
+            <div class="auth-header">
+
+                <div class="auth-icon">
+                    ✨
+                </div>
+
+                <h1>
+                    Create Your Account
+                </h1>
+
+                <p>
+                    Start your journey with NexCraft
+                </p>
+
+            </div>
+
+
+            <!-- Error / Success Message -->
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+            <!-- Registration Form -->
+
+            <form id="registerForm">
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name"
+                        required>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input type="password" id="password" name="password" class="form-control"
+                        placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                        placeholder="Re-enter your password" minlength="8" required>
+
+                </div>
+
+
+                <!-- Password note -->
+
+                <p style="
+                color:var(--muted);
+                font-size:13px;
+                margin-top:-5px;
+                margin-bottom:20px;
+                ">
+                    At least 8 characters, with at least one letter and one number.
+                </p>
+
+
+                <!-- Register Button -->
+
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+
+            <div class="form-footer">
+
+                Already have an account?
+
+                <a href="/login.html">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <p>
+            © 2026 NexCraft. IT Talent & Training Platform.
+        </p>
+
+    </footer>
+
+
+    <!-- Common JS -->
+
+    <script src="/js/common.js"></script>
+
+    <!-- Existing authentication JS -->
+
+    <script src="/js/auth.js"></script>
+
+</body>
+
+</html>

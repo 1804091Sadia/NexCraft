@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Saved Jobs | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body class="module-sidebar-page" data-role="learner" data-page="saved-jobs" data-auto-sidebar="true">
+
+
+    <header class="site-header">
+
+        <div class="navbar">
+
+            <a href="/index.html" class="logo">
+
+                <span class="logo-mark">N</span>
+
+                <span>NexCraft</span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="/learner/dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="/learner/profile.html">
+                    Profile
+                </a>
+
+                <a href="/learner/jobs.html">
+                    Jobs
+                </a>
+
+                <a href="/learner/training.html">
+                    Training
+                </a>
+                <a href="/messages.html">Messages</a>
+                <a href="/settings.html">Settings</a>
+
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button class="btn btn-outline" onclick="logoutUser()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="page-container">
+
+        <div class="container">
+
+
+            <div class="dashboard-header" style="margin-bottom:30px;">
+
+                <h1>Saved Jobs</h1>
+
+                <p>
+                    Jobs you saved for later.
+                </p>
+
+            </div>
+
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+            <div id="savedJobsContainer">
+
+                <div class="card" style="
+                    padding:40px;
+                    text-align:center;
+                ">
+
+                    Loading saved jobs...
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+
+    <script src="/learner/js/saved-jobs.js"></script>
+
+
+</body>
+
+</html>

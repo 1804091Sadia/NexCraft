@@ -1,0 +1,41 @@
+{
+  "name": "nexcraft",
+  "version": "1.0.0",
+  "description": "NexCraft - IT Talent & Training Platform (Express + MongoDB)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "create-admin": "node scripts/createAdmin.js",
+    "create-indexes": "node scripts/createIndexes.js",
+    "seed": "node scripts/seed.js",
+    "test": "node tests/smoke.test.js && node tests/full-flow.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.6.0",
+    "multer": "^2.4.0",
+    "nodemailer": "^10.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cyber-Bit-Byte/nextcraft-express-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cyber-Bit-Byte/nextcraft-express-api/issues"
+  },
+  "homepage": "https://github.com/Cyber-Bit-Byte/nextcraft-express-api#readme",
+  "engines": {
+    "node": ">=20"
+  }
+}

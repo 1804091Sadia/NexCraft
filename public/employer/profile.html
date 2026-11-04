@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="employer" data-page="profile">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Company Profile</h1>
+                    <p>Learners see this company name on every job you post.</p>
+                </div>
+            </div>
+
+            <form id="profileForm" class="panel panel-body" novalidate>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="company_name" class="required">Company name</label>
+                        <input id="company_name" class="form-control" maxlength="120" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <input id="industry" class="form-control" maxlength="80" placeholder="e.g. Software, Fintech">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_phone" class="required">Contact phone</label>
+                        <input id="contact_phone" class="form-control" type="tel" maxlength="30" placeholder="+880 1XXX-XXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website</label>
+                        <input id="website" class="form-control" type="url" maxlength="200" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="location">Office location</label>
+                        <input id="location" class="form-control" maxlength="120" placeholder="City, Country">
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="description">About the company</label>
+                        <textarea id="description" class="form-control" rows="5" maxlength="2000"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save profile</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/employer/js/profile.js"></script>
+</body>
+</html>

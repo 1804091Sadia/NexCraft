@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicants | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="employer" data-page="applications">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Applicants</h1>
+                    <p>Move each applicant forward; they are notified of every change.</p>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="form-group">
+                    <label for="jobFilter">Job</label>
+                    <select id="jobFilter" class="form-control"><option value="">All jobs</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="statusFilter">Status</label>
+                    <select id="statusFilter" class="form-control">
+                        <option value="">All active</option>
+                        <option>Received</option>
+                        <option>Under Review</option>
+                        <option>Shortlisted</option>
+                        <option>Interview Scheduled</option>
+                        <option>Outcome Pending</option>
+                        <option>Placed</option>
+                        <option>Not Progressed</option>
+                        <option>Withdrawn</option>
+                    </select>
+                </div>
+            </div>
+
+            <section class="panel">
+                <div id="applicationsTable"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/employer/js/applications.js"></script>
+</body>
+</html>

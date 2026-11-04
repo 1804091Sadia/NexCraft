@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Enrollments | NexCraft</title>
+
+    <link rel="stylesheet" href="/trainer/css/trainer.css">
+    <link rel="stylesheet" href="/css/platform.css">
+
+    <style>
+        /* =========================================
+           ENROLLMENTS PAGE
+        ========================================= */
+
+        .enrollment-intro {
+            margin-bottom: 24px;
+        }
+
+        .enrollment-intro h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #172033;
+        }
+
+        .enrollment-intro p {
+            margin: 6px 0 0;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           SUMMARY CARDS
+        ========================================= */
+
+        .enrollment-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+
+            gap: 16px;
+
+            margin-bottom: 24px;
+        }
+
+        .enrollment-stat {
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 6px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        .stat-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 17px;
+        }
+
+        .stat-label {
+            margin-top: 12px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+
+            font-weight: 700;
+        }
+
+        .stat-value {
+            margin-top: 4px;
+
+            color: #172033;
+
+            font-size: 24px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================
+           FILTER BAR
+        ========================================= */
+
+        .enrollment-panel {
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.04);
+
+            overflow: hidden;
+        }
+
+        .panel-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 20px 22px;
+
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .panel-title h3 {
+            margin: 0;
+
+            font-size: 16px;
+
+            color: #172033;
+        }
+
+        .panel-title p {
+            margin: 5px 0 0;
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+        .filter-area {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .filter-area select,
+        .filter-area input {
+            border: 1px solid #e2e8f0;
+
+            border-radius: 9px;
+
+            background: #f8fafc;
+
+            color: #334155;
+
+            padding: 9px 11px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+        .filter-area input {
+            min-width: 180px;
+        }
+
+        .filter-area select:focus,
+        .filter-area input:focus {
+            background: #ffffff;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, .08);
+        }
+
+
+        /* =========================================
+           ENROLLMENT TABLE
+        ========================================= */
+
+        .table-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+        .enrollment-table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+        }
+
+        .enrollment-table th {
+            background: #f8fafc;
+
+            color: #64748b;
+
+            padding: 13px 18px;
+
+            text-align: left;
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .45px;
+
+            font-weight: 800;
+
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .enrollment-table td {
+            padding: 16px 18px;
+
+            border-bottom: 1px solid #f1f5f9;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            vertical-align: middle;
+        }
+
+        .enrollment-table tbody tr {
+            transition: background .15s ease;
+        }
+
+        .enrollment-table tbody tr:hover {
+            background: #f8fbff;
+        }
+
+        .enrollment-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+
+        /* =========================================
+           LEARNER INFO
+        ========================================= */
+
+        .learner-cell {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .learner-avatar {
+            width: 36px;
+            height: 36px;
+
+            flex-shrink: 0;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            overflow: hidden;
+        }
+
+        .learner-avatar img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .learner-info strong {
+            display: block;
+
+            color: #172033;
+
+            font-size: 12px;
+        }
+
+        .learner-info span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           PROGRAM
+        ========================================= */
+
+        .program-name {
+            color: #334155;
+
+            font-weight: 700;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           STATUS BADGES
+        ========================================= */
+
+        .enrollment-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 8px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: .25px;
+        }
+
+        .status-pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-approved {
+            background: #ecfdf5;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .status-completed {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .enrollment-actions {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+        }
+
+        .action-btn {
+            border: 0;
+
+            border-radius: 8px;
+
+            padding: 7px 10px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform .15s ease,
+                opacity .15s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+
+            opacity: .9;
+        }
+
+        .approve-btn {
+            background: #ecfdf5;
+
+            color: #15803d;
+        }
+
+        .reject-btn {
+            background: #fef2f2;
+
+            color: #dc2626;
+        }
+
+        .view-btn {
+            background: #eff6ff;
+
+            color: #2563eb;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-enrollments {
+            padding: 65px 25px;
+
+            text-align: center;
+        }
+
+        .empty-enrollment-icon {
+            width: 60px;
+            height: 60px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 25px;
+        }
+
+        .empty-enrollments h3 {
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 18px;
+        }
+
+        .empty-enrollments p {
+            max-width: 410px;
+
+            margin: 7px auto 0;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           LOADING
+        ========================================= */
+
+        .loading-state {
+            padding: 55px 25px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+
+            margin: 0 auto 12px;
+
+            border: 3px solid #dbeafe;
+
+            border-top-color: #2563eb;
+
+            border-radius: 50%;
+
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================
+           MESSAGE
+        ========================================= */
+
+        .message {
+            margin-bottom: 16px;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 950px) {
+
+            .enrollment-stats {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+            .panel-header {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+            .filter-area {
+                width: 100%;
+            }
+
+            .filter-area input {
+                flex: 1;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .enrollment-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-area {
+                flex-direction: column;
+            }
+
+            .filter-area input,
+            .filter-area select {
+                width: 100%;
+
+                box-sizing: border-box;
+            }
+
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                N
+            </div>
+
+            <div>
+
+                <h1>
+                    NexCraft
+                </h1>
+
+                <span>
+                    Trainer Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <div class="sidebar-section-title">
+                Trainer Menu
+            </div>
+
+
+            <a href="/trainer/dashboard.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/trainer/profile.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                My Profile
+
+            </a>
+
+
+            <a href="/trainer/programs.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                My Programs
+
+            </a>
+
+
+            <a href="/trainer/enrollments.html" class="nav-item active">
+
+                <span class="nav-icon">
+                    ♙
+                </span>
+
+                Enrollments
+
+            </a>
+
+
+            <a href="/messages.html" class="nav-item">
+                <span class="nav-icon">✉</span>
+                Messages
+            </a>
+            <a href="/notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </a>
+            <a href="/settings.html" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Settings
+            </a>
+
+
+
+            <a href="/trainer/statistics.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                Statistics
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        Trainer Portal
+                    </strong>
+
+                    <p>
+                        Build. Teach. Inspire.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button id="logoutBtn" class="logout-btn" type="button">
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    TRAINER WORKSPACE
+                </p>
+
+                <h2>
+                    Enrollments
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="status-badge">
+
+                    <span class="status-dot"></span>
+
+                    Trainer
+
+                </div>
+
+            </div>
+
+
+        </header>
+
+
+        <div id="message" class="message">
+        </div>
+
+
+        <!-- INTRO -->
+
+        <section class="enrollment-intro">
+
+            <h3>
+                Learner Enrollments
+            </h3>
+
+            <p>
+                Review learners enrolled in your training programs and manage their enrollment status.
+            </p>
+
+        </section>
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================== -->
+
+        <section class="enrollment-stats">
+
+
+            <div class="enrollment-stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ♙
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Total Enrollments
+                </div>
+
+                <div id="totalEnrollments" class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="enrollment-stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ◷
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Pending
+                </div>
+
+                <div id="pendingEnrollments" class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="enrollment-stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Approved
+                </div>
+
+                <div id="approvedEnrollments" class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="enrollment-stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ★
+                    </div>
+
+                </div>
+
+                <div class="stat-label">
+                    Completed
+                </div>
+
+                <div id="completedEnrollments" class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================================
+             ENROLLMENT TABLE
+        ========================================== -->
+
+        <section class="enrollment-panel">
+
+
+            <div class="panel-header">
+
+
+                <div class="panel-title">
+
+                    <h3>
+                        Enrollment Requests
+                    </h3>
+
+                    <p>
+                        Manage learners associated with your programs.
+                    </p>
+
+                </div>
+
+
+                <div class="filter-area">
+
+
+                    <input id="searchInput" type="search" placeholder="Search learner or program..." aria-label="Search learner or program">
+
+
+                    <select id="statusFilter" aria-label="Filter by enrollment status">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="rejected">
+                            Rejected
+                        </option>
+
+                        <option value="completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+
+                <table class="enrollment-table">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Learner
+                            </th>
+
+                            <th>
+                                Program
+                            </th>
+
+                            <th>
+                                Enrolled On
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="enrollmentTableBody">
+
+
+                        <tr>
+
+                            <td colspan="5">
+
+                                <div class="loading-state">
+
+                                    <div class="loading-spinner"></div>
+
+                                    Loading enrollments...
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script src="/trainer/js/enrollments.js"></script>
+
+
+</body>
+
+</html>

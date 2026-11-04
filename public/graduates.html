@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduates | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/index.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <a href="/login.html" class="btn btn-outline">Login</a>
+                <a href="/register.html" class="btn btn-primary">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-container">
+        <div class="container">
+            <a href="javascript:history.back()" class="auth-back">← Back</a>
+
+            <div class="showcase-head" style="margin-top:12px;">
+                <div>
+                    <h1 style="font-size:32px;">NexCraft Graduates</h1>
+                    <p id="graduateCount">Everyone who completed a training programme.</p>
+                </div>
+            </div>
+
+            <div id="graduatesGrid" class="graduates-grid" aria-live="polite">
+                <div class="showcase-empty">Loading graduates…</div>
+            </div>
+
+            <div style="text-align:center;margin:28px 0;">
+                <button type="button" id="loadMore" class="btn btn-outline" hidden>Load more</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 NexCraft. IT Talent &amp; Training Platform.</p>
+    </footer>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/showcase.js"></script>
+    <script>
+        const grid = document.getElementById("graduatesGrid");
+        const loadMore = document.getElementById("loadMore");
+        let page = 1;
+
+        async function loadPage() {
+            loadMore.disabled = true;
+
+            try {
+                const data = await apiFetch(`/api/showcase/all?page=${page}`);
+
+                if (page === 1) {
+                    grid.innerHTML = "";
+                    document.getElementById("graduateCount").textContent =
+                        `${data.total} learner${data.total === 1 ? "" : "s"} completed a training programme.`;
+                }
+
+                if (data.total === 0) {
+                    grid.innerHTML = `<div class="showcase-empty">No graduates yet — be the first!</div>`;
+                }
+
+                grid.insertAdjacentHTML("beforeend", data.graduates.map(graduateCard).join(""));
+
+                loadMore.hidden = page >= data.totalPages;
+                page++;
+
+            } catch (error) {
+                grid.innerHTML = `<div class="showcase-empty">${escapeHTML(error.message)}</div>`;
+            } finally {
+                loadMore.disabled = false;
+            }
+        }
+
+        loadMore.addEventListener("click", loadPage);
+        loadPage();
+    </script>
+</body>
+</html>

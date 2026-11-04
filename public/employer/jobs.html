@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="employer" data-page="jobs">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>My Job Posts</h1>
+                    <p>Draft → Pending Approval → Active. Edit drafts or rejected jobs and resubmit.</p>
+                </div>
+                <a href="/employer/job-form.html" class="btn btn-primary">＋ Post a Job</a>
+            </div>
+
+            <div class="tabs" id="statusTabs">
+                <button data-tab="">All</button>
+                <button data-tab="draft">Drafts</button>
+                <button data-tab="pending_approval">Pending</button>
+                <button data-tab="active">Active</button>
+                <button data-tab="rejected">Rejected</button>
+                <button data-tab="closed">Closed</button>
+            </div>
+
+            <section class="panel">
+                <div id="jobsTable"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/employer/js/jobs.js"></script>
+</body>
+</html>

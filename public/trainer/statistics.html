@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Statistics | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/platform.css">
+
+    <link rel="stylesheet" href="/trainer/css/trainer.css">
+
+    <style>
+        .statistics-page {
+            padding: 30px;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+            color: #172033;
+        }
+
+        .page-header p {
+            margin: 0;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .stats-section {
+            margin-bottom: 32px;
+        }
+
+        .stats-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #172033;
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow:
+                0 5px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .stat-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 19px;
+        }
+
+        .stat-value {
+            margin-top: 14px;
+            font-size: 30px;
+            font-weight: 750;
+            color: #172033;
+        }
+
+        .program-table-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow:
+                0 5px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .table-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table-header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #172033;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        th {
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        td {
+            color: #334155;
+            font-size: 14px;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .program-title {
+            font-weight: 650;
+            color: #172033;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-draft {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .status-pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-active {
+            background: #ecfdf5;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fef2f2;
+            color: #b91c1c;
+        }
+
+        .status-closed {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #64748b;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 45px 20px;
+            color: #64748b;
+        }
+
+        .error-message {
+            display: none;
+            margin-bottom: 20px;
+            padding: 13px 16px;
+            border-radius: 10px;
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        @media (max-width: 1100px) {
+
+            .stats-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .statistics-page {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                N
+            </div>
+
+            <div>
+
+                <div class="brand-name">NexCraft</div>
+
+                <span>
+                    Trainer Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-title">
+            Trainer Menu
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/trainer/dashboard.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="/trainer/profile.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    My Profile
+                </span>
+
+            </a>
+
+
+            <a href="/trainer/programs.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Programs
+                </span>
+
+            </a>
+
+
+            <a href="/trainer/enrollments.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ♙
+                </span>
+
+                <span>
+                    Enrollments
+                </span>
+
+            </a>
+
+
+            <a href="/messages.html" class="nav-item">
+                <span class="nav-icon">✉</span>
+                Messages
+            </a>
+            <a href="/notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </a>
+            <a href="/settings.html" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Settings
+            </a>
+
+
+
+            <a href="/trainer/statistics.html" class="nav-item active">
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                <span>
+                    Statistics
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        Trainer Portal
+                    </strong>
+
+                    <p>
+                        Build. Teach. Inspire.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a href="#" id="logoutBtn" class="nav-item">
+
+                <span class="nav-icon">
+                    ↪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <div class="eyebrow">Overview</div>
+                <h2>Trainer Statistics</h2>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="status-badge">
+
+                    <span class="status-dot"></span>
+
+                    Trainer
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+            <section class="statistics-page">
+
+                <div class="page-header">
+
+                    <h1>Trainer Statistics</h1>
+
+                    <p>
+                        Monitor your training programs
+                        and learner enrollments.
+                    </p>
+
+                </div>
+
+
+                <div id="errorMessage" class="error-message"></div>
+
+
+                <!-- ==========================
+                     PROGRAM STATISTICS
+                =========================== -->
+
+                <div class="stats-section">
+
+                    <div class="stats-section-title">
+                        Program Overview
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Total Programs
+                                </div>
+
+                                <div class="stat-icon">
+                                    ▣
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="totalPrograms">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Draft Programs
+                                </div>
+
+                                <div class="stat-icon">
+                                    ◇
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="draftPrograms">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Pending Approval
+                                </div>
+
+                                <div class="stat-icon">
+                                    ◷
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="pendingPrograms">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Active Programs
+                                </div>
+
+                                <div class="stat-icon">
+                                    ✓
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="activePrograms">
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================
+                     ENROLLMENT STATISTICS
+                =========================== -->
+
+                <div class="stats-section">
+
+                    <div class="stats-section-title">
+                        Enrollment Overview
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Total Enrollments
+                                </div>
+
+                                <div class="stat-icon">
+                                    ♙
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="totalEnrollments">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Enrolled
+                                </div>
+
+                                <div class="stat-icon">
+                                    +
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="enrolledLearners">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    In Progress
+                                </div>
+
+                                <div class="stat-icon">
+                                    →
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="inProgressLearners">
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <div class="stat-card-top">
+
+                                <div class="stat-label">
+                                    Completed
+                                </div>
+
+                                <div class="stat-icon">
+                                    ✓
+                                </div>
+
+                            </div>
+
+                            <div class="stat-value" id="completedLearners">
+                                0
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================
+                     PROGRAM ENROLLMENTS
+                =========================== -->
+
+                <div class="stats-section">
+
+                    <div class="stats-section-title">
+                        Program Enrollment Counts
+                    </div>
+
+
+                    <div class="program-table-card">
+
+                        <div class="table-header">
+
+                            <h2>
+                                Learners per Program
+                            </h2>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+                                            Program
+                                        </th>
+
+                                        <th>
+                                            Status
+                                        </th>
+
+                                        <th>
+                                            Enrollments
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="programStatsBody">
+
+                                    <tr>
+
+                                        <td colspan="3" class="loading-state">
+                                            Loading statistics...
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    <script src="/trainer/js/statistics.js"></script>
+
+</body>
+
+</html>

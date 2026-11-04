@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Choose Your Role | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .role-page {
+            min-height: calc(100vh - 72px);
+            background: linear-gradient(135deg, #f8fafc 0%, #eef4ff 100%);
+            padding: 60px 20px;
+        }
+
+        .role-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .role-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .role-heading .role-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 18px;
+            border-radius: 18px;
+            background: #e8efff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .role-heading h1 {
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        .role-heading p {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .role-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 32px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .role-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.10);
+        }
+
+        .role-card.selected {
+            border-color: var(--primary);
+            background: #f7faff;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .role-card.selected::after {
+            content: "✓";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .role-card-icon {
+            width: 76px;
+            height: 76px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            background: #eef2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .role-card h2 {
+            margin: 0 0 10px;
+            font-size: 22px;
+        }
+
+        .role-card p {
+            color: var(--muted);
+            line-height: 1.6;
+            min-height: 75px;
+            margin-bottom: 20px;
+        }
+
+        .role-points {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .role-points li {
+            padding: 7px 0;
+            color: #475569;
+            font-size: 14px;
+        }
+
+        .role-points li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .role-action {
+            max-width: 420px;
+            margin: 35px auto 0;
+            text-align: center;
+        }
+
+        .role-action .btn {
+            width: 100%;
+        }
+
+        .role-note {
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .role-back {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .role-grid {
+                grid-template-columns: 1fr;
+                max-width: 550px;
+                margin: 0 auto;
+            }
+
+            .role-card p {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .role-page {
+                padding: 35px 15px;
+            }
+
+            .role-heading h1 {
+                font-size: 28px;
+            }
+
+            .role-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+
+            <a href="/index.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="/index.html">Home</a>
+            </div>
+
+            <div class="nav-actions">
+                <button onclick="logoutUser()" class="btn btn-outline">
+                    Logout
+                </button>
+            </div>
+
+            <button type="button" class="menu-toggle" aria-label="Open menu">
+                ☰
+            </button>
+
+        </nav>
+    </header>
+
+
+    <main class="role-page">
+
+        <div class="role-container">
+
+            <a href="/login.html" class="role-back">
+                ← Back to Login
+            </a>
+
+            <div class="role-heading">
+
+                <div class="role-icon">
+                    👋
+                </div>
+
+                <h1>Choose Your Role</h1>
+
+                <p>
+                    Tell us how you want to use NexCraft.
+                    You can create your profile after selecting a role.
+                </p>
+
+            </div>
+
+
+            <div id="message" class="alert" style="display:none;">
+            </div>
+
+
+            <div class="role-grid">
+
+                <!-- LEARNER -->
+
+                <div class="role-card" data-role="Learner" onclick="selectRole(this)">
+
+                    <div class="role-card-icon">
+                        🎓
+                    </div>
+
+                    <h2>Learner</h2>
+
+                    <p>
+                        Build your skills, discover opportunities,
+                        apply for jobs and join training programs.
+                    </p>
+
+                    <ul class="role-points">
+                        <li>Build your professional profile</li>
+                        <li>Apply for jobs</li>
+                        <li>Join training programs</li>
+                        <li>Earn skills and badges</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- TRAINER -->
+
+                <div class="role-card" data-role="Trainer" onclick="selectRole(this)">
+
+                    <div class="role-card-icon">
+                        👨‍🏫
+                    </div>
+
+                    <h2>Trainer</h2>
+
+                    <p>
+                        Create and manage training programs, support learners,
+                        and track enrollments from your Trainer workspace.
+                    </p>
+
+                    <ul class="role-points">
+                        <li>Build your Trainer profile</li>
+                        <li>Create training programs</li>
+                        <li>Manage learner enrollments</li>
+                        <li>Track your training activity</li>
+                    </ul>
+
+                </div>
+
+
+                <!-- EMPLOYER -->
+
+                <div class="role-card" data-role="Employer" onclick="selectRole(this)">
+
+                    <div class="role-card-icon">
+                        💼
+                    </div>
+
+                    <h2>Employer</h2>
+
+                    <p>
+                        Find talented people, post jobs and
+                        manage applications.
+                    </p>
+
+                    <ul class="role-points">
+                        <li>Create company profile</li>
+                        <li>Post job opportunities</li>
+                        <li>Find talented learners</li>
+                        <li>Manage applications</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="role-action">
+
+                <button id="continueButton" class="btn btn-primary" onclick="continueWithRole()" disabled>
+                    Continue
+                </button>
+
+                <p class="role-note">
+                    You can complete your profile from your selected workspace.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <p>
+            © 2026 NexCraft. IT Talent & Training Platform.
+        </p>
+    </footer>
+
+
+    <script src="/js/common.js"></script>
+    <script src="/js/role.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approvals | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="admin" data-page="approvals">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Approvals</h1>
+                    <p>Review job posts, training programs and trainer applications. Rejections need a reason, which the owner sees.</p>
+                </div>
+            </div>
+
+            <div class="tabs" id="kindTabs">
+                <button data-tab="jobs">Job posts <span class="tab-count" id="countJobs" hidden></span></button>
+                <button data-tab="programs">Training programs <span class="tab-count" id="countPrograms" hidden></span></button>
+                <button data-tab="trainers">Trainer applications <span class="tab-count" id="countTrainers" hidden></span></button>
+            </div>
+
+            <div class="toolbar">
+                <div class="form-group" style="max-width:240px;">
+                    <label for="statusFilter">Show</label>
+                    <select id="statusFilter" class="form-control">
+                        <option value="pending">Waiting for review</option>
+                        <option value="all">Everything</option>
+                    </select>
+                </div>
+            </div>
+
+            <section class="panel">
+                <div id="list"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/admin/js/approvals.js"></script>
+</body>
+</html>

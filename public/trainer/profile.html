@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trainer Profile | NexCraft</title>
+
+    <link rel="stylesheet" href="/trainer/css/trainer.css">
+
+    <!-- Shared NexCraft platform styling -->
+    <link rel="stylesheet" href="/css/platform.css">
+
+    <style>
+        /* =====================================================
+           TRAINER PROFILE PAGE
+        ===================================================== */
+
+        .profile-page {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .profile-hero {
+            position: relative;
+            overflow: hidden;
+
+            border-radius: 18px;
+
+            padding: 32px;
+
+            margin-bottom: 24px;
+
+            background:
+                linear-gradient(135deg,
+                    #2563eb 0%,
+                    #4f46e5 100%);
+
+            color: white;
+
+            box-shadow:
+                0 14px 35px rgba(37, 99, 235, 0.15);
+        }
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .avatar {
+            width: 92px;
+            height: 92px;
+
+            min-width: 92px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background:
+                rgba(255, 255, 255, 0.16);
+
+            border:
+                3px solid rgba(255, 255, 255, 0.65);
+
+            overflow: hidden;
+
+            font-size: 34px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.10);
+        }
+
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .hero-label {
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.5px;
+
+            opacity: .85;
+        }
+
+
+        .hero-text h1 {
+            margin: 7px 0 5px;
+
+            font-size: 30px;
+
+            letter-spacing: -0.6px;
+        }
+
+
+        .hero-text p {
+            margin: 0;
+
+            max-width: 650px;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            opacity: .90;
+        }
+
+
+        .hero-decoration {
+            position: absolute;
+
+            right: -40px;
+            top: -80px;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 255, 255, 0.07);
+        }
+
+
+        .hero-decoration::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: 50px;
+            top: 80px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.13);
+        }
+
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .full-profile-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.45fr) minmax(320px, .75fr);
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
+        .profile-card {
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            padding: 26px;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.05);
+        }
+
+
+        .profile-card+.profile-card {
+            margin-top: 20px;
+        }
+
+
+        .card-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .card-title small {
+            display: block;
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            letter-spacing: 1.3px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 6px;
+        }
+
+
+        .card-title h3 {
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 20px;
+        }
+
+
+        .card-title p {
+            margin: 6px 0 0;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .profile-form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: 18px;
+        }
+
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #263047;
+        }
+
+
+        .required {
+            color: #dc2626;
+        }
+
+
+        .field input,
+        .field textarea {
+            width: 100%;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            padding: 12px 13px;
+
+            color: #172033;
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+            outline: none;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+
+        .field input {
+            height: 46px;
+        }
+
+
+        .field textarea {
+            min-height: 150px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+        }
+
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: #2563eb;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, .08);
+        }
+
+
+        .field input[readonly] {
+            background: #f1f5f9;
+
+            color: #64748b;
+
+            cursor: not-allowed;
+        }
+
+
+        .field-help {
+            display: block;
+
+            margin-top: 6px;
+
+            color: #8992a5;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .textarea-footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: 6px;
+        }
+
+
+        #characterCount {
+            color: #8992a5;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           PHOTO UPLOAD
+        ===================================================== */
+
+        .photo-upload {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 15px;
+
+            border:
+                1px dashed #cbd5e1;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+        }
+
+
+        .photo-preview {
+            width: 82px;
+            height: 82px;
+
+            min-width: 82px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(135deg,
+                    #2563eb,
+                    #4f46e5);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            font-size: 28px;
+
+            font-weight: 800;
+        }
+
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .photo-upload-content {
+            flex: 1;
+        }
+
+
+        .photo-upload-content strong {
+            display: block;
+
+            margin-bottom: 4px;
+
+            font-size: 14px;
+
+            color: #172033;
+        }
+
+
+        .photo-upload-content p {
+            margin: 0 0 10px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .file-btn {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 8px 12px;
+
+            border-radius: 9px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+
+        .file-btn:hover {
+            background: #dbeafe;
+        }
+
+
+        .file-btn input {
+            display: none;
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .form-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 22px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #e2e8f0;
+        }
+
+
+        .save-profile-btn {
+            border: 0;
+
+            border-radius: 9px;
+
+            padding: 12px 20px;
+
+            background:
+                linear-gradient(135deg,
+                    #2563eb,
+                    #4f46e5);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 7px 18px rgba(37, 99, 235, .18);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease;
+        }
+
+
+        .save-profile-btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 10px 22px rgba(37, 99, 235, .22);
+        }
+
+
+        .save-profile-btn:disabled {
+            opacity: .65;
+
+            cursor: wait;
+
+            transform: none;
+        }
+
+
+        /* =====================================================
+           PUBLIC PROFILE
+        ===================================================== */
+
+        .public-profile {
+            position: sticky;
+
+            top: 24px;
+        }
+
+
+        .public-profile-header {
+            text-align: center;
+
+            padding-bottom: 22px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+        }
+
+
+        .public-avatar {
+            width: 110px;
+            height: 110px;
+
+            margin: 0 auto 14px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(135deg,
+                    #2563eb,
+                    #4f46e5);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 28px rgba(37, 99, 235, .15);
+        }
+
+
+        .public-avatar img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .public-profile-header h3 {
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 21px;
+        }
+
+
+        .public-designation {
+            margin: 5px 0 0;
+
+            color: #2563eb;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .public-organization {
+            margin: 5px 0 0;
+
+            color: #7b8497;
+
+            font-size: 12px;
+        }
+
+
+        .public-expertise {
+            display: inline-flex;
+
+            margin-top: 13px;
+
+            padding: 7px 11px;
+
+            border-radius: 20px;
+
+            background: #eff6ff;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           INFO LIST
+        ===================================================== */
+
+        .profile-info-list {
+            margin-top: 20px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+        }
+
+
+        .info-row {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 11px;
+        }
+
+
+        .info-icon {
+            width: 30px;
+            height: 30px;
+
+            min-width: 30px;
+
+            border-radius: 9px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 13px;
+        }
+
+
+        .info-text {
+            min-width: 0;
+        }
+
+
+        .info-text span {
+            display: block;
+
+            color: #929bad;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: .7px;
+
+            margin-bottom: 2px;
+        }
+
+
+        .info-text strong,
+        .info-text a {
+            color: #263047;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            word-break: break-word;
+
+            text-decoration: none;
+        }
+
+
+        .info-text a {
+            color: #2563eb;
+        }
+
+
+        /* =====================================================
+           BIO
+        ===================================================== */
+
+        .bio-preview {
+            margin-top: 20px;
+
+            padding-top: 20px;
+
+            border-top:
+                1px solid #e2e8f0;
+        }
+
+
+        .bio-preview h4 {
+            margin: 0 0 8px;
+
+            font-size: 13px;
+
+            color: #172033;
+        }
+
+
+        .bio-preview p {
+            margin: 0;
+
+            color: #68738a;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .profile-message {
+            display: none;
+
+            margin-bottom: 20px;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .profile-message.success {
+            display: block;
+
+            background: #ecfdf5;
+
+            color: #15803d;
+
+            border:
+                1px solid #bbf7d0;
+        }
+
+
+        .profile-message.error {
+            display: block;
+
+            background: #fef2f2;
+
+            color: #b91c1c;
+
+            border:
+                1px solid #fecaca;
+        }
+
+
+        .empty-value {
+            color: #a1a8b7 !important;
+
+            font-weight: 500 !important;
+        }
+
+
+        /* =====================================================
+           PROFILE GUIDANCE
+        ===================================================== */
+
+        .profile-guidance-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 12px;
+        }
+
+
+        .guidance-item {
+            padding: 15px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 12px;
+        }
+
+
+        .guidance-item strong {
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+            color: #172033;
+        }
+
+
+        .guidance-item span {
+            color: #778196;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1050px) {
+
+            .full-profile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .public-profile {
+                position: static;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .profile-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .profile-hero {
+                padding: 25px;
+            }
+
+            .hero-content {
+                align-items: flex-start;
+            }
+
+            .avatar {
+                width: 72px;
+                height: 72px;
+
+                min-width: 72px;
+
+                font-size: 27px;
+            }
+
+            .hero-text h1 {
+                font-size: 23px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .photo-upload {
+                align-items: flex-start;
+            }
+
+            .profile-guidance-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text h1 {
+                font-size: 21px;
+            }
+
+            .profile-hero {
+                padding: 20px;
+            }
+
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         TRAINER SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                N
+            </div>
+
+            <div>
+
+                <div class="brand-name">NexCraft</div>
+
+                <span>
+                    Trainer Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-title">
+            Trainer Menu
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <!-- Trainer Dashboard -->
+
+            <a href="/trainer/dashboard.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <!-- Trainer Profile -->
+
+            <a href="/trainer/profile.html" class="nav-item active">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    My Profile
+                </span>
+
+            </a>
+
+
+            <!-- Programs -->
+
+            <a href="/trainer/programs.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Programs
+                </span>
+
+            </a>
+
+
+            <!-- Enrollments -->
+
+            <a href="/trainer/enrollments.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ♙
+                </span>
+
+                <span>
+                    Enrollments
+                </span>
+
+            </a>
+
+
+            <!-- Statistics -->
+
+            <a href="/messages.html" class="nav-item">
+                <span class="nav-icon">✉</span>
+                Messages
+            </a>
+            <a href="/notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </a>
+            <a href="/settings.html" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Settings
+            </a>
+
+
+            <a href="/trainer/statistics.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                <span>
+                    Statistics
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        Trainer Portal
+                    </strong>
+
+                    <p>
+                        Build. Teach. Inspire.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button id="logoutBtn" class="logout-btn">
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <div class="profile-page">
+
+
+            <!-- =================================================
+                 TOP BAR
+            ================================================== -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <p class="eyebrow">
+                        TRAINER ACCOUNT
+                    </p>
+
+                    <h2>
+                        My Profile
+                    </h2>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="status-badge">
+
+                        <span class="status-dot"></span>
+
+                        Trainer
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 HERO
+            ================================================== -->
+
+            <section class="profile-hero">
+
+                <div class="hero-content">
+
+
+                    <div class="avatar" id="trainerAvatar">
+
+                        T
+
+                    </div>
+
+
+                    <div class="hero-text">
+
+                        <span class="hero-label">
+                            PROFESSIONAL TRAINER PROFILE
+                        </span>
+
+
+                        <h1 id="trainerNameHeading">
+                            Build your trainer identity
+                        </h1>
+
+
+                        <p>
+                            Create a complete professional profile
+                            so learners can understand who you are,
+                            what you teach, and how they can connect
+                            with you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-decoration"></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MESSAGE
+            ================================================== -->
+
+            <div id="message" class="profile-message">
+            </div>
+
+
+            <!-- =================================================
+                 PROFILE GRID
+            ================================================== -->
+
+            <section class="full-profile-grid">
+
+
+                <!-- =================================================
+                     LEFT COLUMN
+                ================================================== -->
+
+                <div>
+
+
+                    <!-- PROFESSIONAL INFORMATION -->
+
+                    <div class="profile-card">
+
+
+                        <div class="card-title">
+
+                            <div>
+
+                                <small>
+                                    Professional Information
+                                </small>
+
+                                <h3>
+                                    Tell learners about yourself
+                                </h3>
+
+                                <p>
+                                    These details help learners
+                                    understand your professional
+                                    background and expertise.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <form id="trainerProfileForm">
+
+
+                            <div class="profile-form-grid">
+
+
+                                <!-- PHOTO -->
+
+                                <div class="field full">
+
+                                    <label>
+                                        Profile Photo
+                                    </label>
+
+
+                                    <div class="photo-upload">
+
+
+                                        <div class="photo-preview" id="photoPreview">
+
+                                            T
+
+                                        </div>
+
+
+                                        <div class="photo-upload-content">
+
+                                            <strong>
+                                                Add your professional photo
+                                            </strong>
+
+
+                                            <p>
+                                                Use a clear JPG, JPEG or PNG
+                                                image. Maximum size: 5 MB.
+                                            </p>
+
+
+                                            <label class="file-btn">
+
+                                                <span>
+                                                    📷 Choose Photo
+                                                </span>
+
+
+                                                <input type="file" id="profile_image" name="profile_image"
+                                                    accept="image/jpeg,image/png,image/jpg">
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- NAME -->
+
+                                <div class="field">
+
+                                    <label for="trainer_name">
+
+                                        Full Name
+
+                                        <span class="required">
+                                            *
+                                        </span>
+
+                                    </label>
+
+
+                                    <input type="text" id="trainer_name" maxlength="100" autocomplete="name"
+                                        placeholder="Your full name" required>
+
+                                </div>
+
+
+                                <!-- EMAIL -->
+
+                                <div class="field">
+
+                                    <label for="trainer_email">
+                                        Email
+                                    </label>
+
+
+                                    <input type="email" id="trainer_email" readonly>
+
+
+                                    <span class="field-help">
+                                        Your account email is used
+                                        as your contact email.
+                                    </span>
+
+                                </div>
+
+
+                                <!-- PHONE -->
+
+                                <div class="field">
+
+                                    <label for="phone">
+                                        Phone
+                                    </label>
+
+
+                                    <input type="tel" id="phone" maxlength="30" placeholder="+880 1XXXXXXXXX">
+
+                                </div>
+
+
+                                <!-- LOCATION -->
+
+                                <div class="field">
+
+                                    <label for="location">
+                                        Location
+                                    </label>
+
+
+                                    <input type="text" id="location" maxlength="120"
+                                        placeholder="e.g. Dhaka, Bangladesh">
+
+                                </div>
+
+
+                                <!-- DESIGNATION -->
+
+                                <div class="field">
+
+                                    <label for="designation">
+                                        Professional Title
+                                    </label>
+
+
+                                    <input type="text" id="designation" maxlength="120"
+                                        placeholder="e.g. Backend Developer & Trainer">
+
+                                </div>
+
+
+                                <!-- ORGANIZATION -->
+
+                                <div class="field">
+
+                                    <label for="organization">
+                                        Organization / Company
+                                    </label>
+
+
+                                    <input type="text" id="organization" maxlength="150"
+                                        placeholder="e.g. Cyber Bit Byte">
+
+                                </div>
+
+
+                                <!-- EXPERTISE -->
+
+                                <div class="field full">
+
+                                    <label for="expertise_area">
+
+                                        Main Expertise Area
+
+                                        <span class="required">
+                                            *
+                                        </span>
+
+                                    </label>
+
+
+                                    <input type="text" id="expertise_area" maxlength="150"
+                                        placeholder="e.g. Backend Development, Python, Node.js" required>
+
+
+                                    <span class="field-help">
+                                        Your main professional or teaching specialization.
+                                    </span>
+
+                                </div>
+
+
+                                <!-- EXPERIENCE -->
+
+                                <div class="field">
+
+                                    <label for="experience_years">
+                                        Years of Experience
+                                    </label>
+
+
+                                    <input type="text" id="experience_years" maxlength="30" placeholder="e.g. 3 years">
+
+                                </div>
+
+
+                                <!-- EDUCATION -->
+
+                                <div class="field">
+
+                                    <label for="education">
+                                        Education
+                                    </label>
+
+
+                                    <input type="text" id="education" maxlength="200"
+                                        placeholder="e.g. MSc in CSE, CUET">
+
+                                </div>
+
+
+                                <!-- LINKEDIN -->
+
+                                <div class="field">
+
+                                    <label for="linkedin">
+                                        LinkedIn
+                                    </label>
+
+
+                                    <input type="url" id="linkedin" maxlength="300"
+                                        placeholder="https://linkedin.com/in/yourname">
+
+                                </div>
+
+
+                                <!-- WEBSITE -->
+
+                                <div class="field">
+
+                                    <label for="website">
+                                        Portfolio / Website
+                                    </label>
+
+
+                                    <input type="url" id="website" maxlength="300"
+                                        placeholder="https://yourwebsite.com">
+
+                                </div>
+
+
+                                <!-- BIO -->
+
+                                <div class="field full">
+
+                                    <label for="bio">
+                                        Professional Bio
+                                    </label>
+
+
+                                    <textarea id="bio" maxlength="1500"
+                                        placeholder="Write a short professional introduction. Mention your experience, skills, teaching interests, and the kind of learners you enjoy helping."></textarea>
+
+
+                                    <div class="textarea-footer">
+
+                                        <span class="field-help">
+                                            Keep it clear, professional,
+                                            and useful to learners.
+                                        </span>
+
+
+                                        <span id="characterCount">
+                                            0 / 1500
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- SAVE -->
+
+                            <div class="form-actions">
+
+                                <button type="submit" id="saveBtn" class="save-profile-btn">
+
+                                    ✓ Save Profile
+
+                                </button>
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PROFILE GUIDANCE
+                    ================================================== -->
+
+                    <div class="profile-card">
+
+
+                        <div class="card-title">
+
+                            <div>
+
+                                <small>
+                                    Profile Guidance
+                                </small>
+
+                                <h3>
+                                    Make your profile useful
+                                </h3>
+
+                                <p>
+                                    A complete profile gives learners
+                                    enough information to decide whether
+                                    your training matches their goals.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="profile-guidance-grid">
+
+
+                            <div class="guidance-item">
+
+                                <strong>
+                                    👤 Identity
+                                </strong>
+
+                                <span>
+                                    Name, photo and professional title.
+                                </span>
+
+                            </div>
+
+
+                            <div class="guidance-item">
+
+                                <strong>
+                                    💼 Expertise
+                                </strong>
+
+                                <span>
+                                    Skills, experience and education.
+                                </span>
+
+                            </div>
+
+
+                            <div class="guidance-item">
+
+                                <strong>
+                                    🔗 Connect
+                                </strong>
+
+                                <span>
+                                    Email, LinkedIn and website.
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT COLUMN
+                ================================================== -->
+
+                <div class="public-profile">
+
+
+                    <div class="profile-card">
+
+
+                        <div class="card-title">
+
+                            <div>
+
+                                <small>
+                                    Public Profile
+                                </small>
+
+                                <h3>
+                                    How learners see you
+                                </h3>
+
+                                <p>
+                                    Your information will be presented
+                                    in a clean trainer profile.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PUBLIC HEADER -->
+
+                        <div class="public-profile-header">
+
+
+                            <div class="public-avatar" id="publicAvatar">
+
+                                T
+
+                            </div>
+
+
+                            <h3 id="previewName">
+                                Trainer Name
+                            </h3>
+
+
+                            <p class="public-designation" id="previewDesignation">
+
+                                Professional Trainer
+
+                            </p>
+
+
+                            <p class="public-organization" id="previewOrganization">
+
+                                Organization
+
+                            </p>
+
+
+                            <span class="public-expertise" id="previewExpertise">
+
+                                Expertise Area
+
+                            </span>
+
+
+                        </div>
+
+
+                        <!-- =================================================
+                             INFORMATION
+                        ================================================== -->
+
+                        <div class="profile-info-list">
+
+
+                            <!-- EMAIL -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    ✉
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Email
+                                    </span>
+
+                                    <strong id="previewEmail">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    ☎
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Phone
+                                    </span>
+
+                                    <strong id="previewPhone">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LOCATION -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    ◉
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Location
+                                    </span>
+
+                                    <strong id="previewLocation">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EDUCATION -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    🎓
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Education
+                                    </span>
+
+                                    <strong id="previewEducation">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EXPERIENCE -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    ★
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Experience
+                                    </span>
+
+                                    <strong id="previewExperience">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LINKEDIN -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    in
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        LinkedIn
+                                    </span>
+
+                                    <a id="previewLinkedin" href="#" target="_blank" rel="noopener noreferrer">
+
+                                        —
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- WEBSITE -->
+
+                            <div class="info-row">
+
+                                <div class="info-icon">
+                                    ↗
+                                </div>
+
+                                <div class="info-text">
+
+                                    <span>
+                                        Website
+                                    </span>
+
+                                    <a id="previewWebsite" href="#" target="_blank" rel="noopener noreferrer">
+
+                                        —
+
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- =================================================
+                             BIO
+                        ================================================== -->
+
+                        <div class="bio-preview">
+
+                            <h4>
+                                About the Trainer
+                            </h4>
+
+                            <p id="previewBio">
+                                Your professional bio will appear here.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         TRAINER PROFILE JAVASCRIPT
+    ====================================================== -->
+
+    <script src="/trainer/js/profile.js"></script>
+
+</body>
+
+</html>

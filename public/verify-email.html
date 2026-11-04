@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/index.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <a href="/login.html" class="btn btn-outline">Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="auth-page">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-icon">✉️</div>
+                <h1>Email verification</h1>
+            </div>
+
+            <div id="message" class="alert" role="status" aria-live="polite">Verifying your email…</div>
+
+            <a href="/login.html" id="verifyContinue" class="btn btn-primary btn-block" hidden>Continue to Login</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2026 NexCraft. IT Talent &amp; Training Platform.</p>
+    </footer>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Catalogue | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="admin" data-page="skills">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1>Skills Catalogue</h1>
+                    <p>These skills are suggested in job, program and search forms, which keeps spelling consistent.</p>
+                </div>
+            </div>
+
+            <form class="panel panel-body toolbar" id="skillForm" novalidate>
+                <div class="form-group">
+                    <label for="skillName" class="required">Skill</label>
+                    <input id="skillName" class="form-control" maxlength="40" placeholder="e.g. Express.js">
+                </div>
+                <div class="form-group">
+                    <label for="skillCategory">Category</label>
+                    <input id="skillCategory" class="form-control" maxlength="40" list="categoryList" placeholder="e.g. Backend">
+                    <datalist id="categoryList"></datalist>
+                </div>
+                <button type="submit" class="btn btn-primary">Add skill</button>
+            </form>
+
+            <section class="panel">
+                <div id="skillsTable"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/admin/js/skills.js"></script>
+</body>
+</html>

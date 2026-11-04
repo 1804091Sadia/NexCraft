@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="employer" data-page="dashboard">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1 id="welcome">Employer Dashboard</h1>
+                    <p>Your job posts and applicants at a glance.</p>
+                </div>
+                <a href="/employer/job-form.html" class="btn btn-primary">＋ Post a Job</a>
+            </div>
+
+            <div id="profileNotice" class="notice" hidden>
+                Add your company profile before posting jobs.
+                <a href="/employer/profile.html"><strong>Complete company profile →</strong></a>
+            </div>
+
+            <div class="tiles" id="tiles">
+                <div class="tile"><div class="tile-label">Loading…</div><div class="tile-value">—</div></div>
+            </div>
+
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>Latest applicants</h2>
+                    <a href="/employer/applications.html" class="btn btn-outline btn-sm">View all</a>
+                </div>
+                <div id="recent"><div class="empty-state" aria-busy="true"><p>Loading…</p></div></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/employer/js/dashboard.js"></script>
+</body>
+</html>

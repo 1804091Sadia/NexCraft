@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Programs | NexCraft</title>
+
+    <link rel="stylesheet" href="/trainer/css/trainer.css">
+    <link rel="stylesheet" href="/css/platform.css">
+
+    <style>
+        /* =========================================
+           PROGRAMS PAGE
+        ========================================= */
+
+        .programs-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .toolbar-title h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #172033;
+        }
+
+        .toolbar-title p {
+            margin: 6px 0 0;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           PROGRAM GRID
+        ========================================= */
+
+        .program-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fill, minmax(310px, 1fr));
+            gap: 20px;
+        }
+
+        .program-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 22px;
+
+            box-shadow:
+                0 8px 25px rgba(15, 23, 42, 0.05);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #cbd5e1;
+
+            box-shadow:
+                0 15px 35px rgba(15, 23, 42, 0.08);
+        }
+
+
+        /* =========================================
+           CARD HEADER
+        ========================================= */
+
+        .program-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .program-category {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            background: #eff6ff;
+            color: #2563eb;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .program-status {
+            display: inline-flex;
+            align-items: center;
+
+            padding: 6px 10px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 800;
+
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+
+        /* =========================================
+           STATUS COLORS
+        ========================================= */
+
+        .status-draft {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-active {
+            background: #ecfdf5;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .status-closed {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+
+        /* =========================================
+           PROGRAM CONTENT
+        ========================================= */
+
+        .program-card h3 {
+            margin: 17px 0 0;
+
+            color: #172033;
+
+            font-size: 18px;
+            line-height: 1.35;
+        }
+
+        .program-description {
+            margin-top: 9px;
+
+            color: #64748b;
+
+            font-size: 12px;
+            line-height: 1.7;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================
+           PROGRAM META
+        ========================================= */
+
+        .program-meta {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+        .meta-item {
+            background: #f8fafc;
+
+            border: 1px solid #f1f5f9;
+
+            padding: 10px;
+
+            border-radius: 10px;
+        }
+
+        .meta-item span {
+            display: block;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+        .meta-item strong {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #334155;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           SKILLS
+        ========================================= */
+
+        .skill-list {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 6px;
+
+            margin-top: 16px;
+        }
+
+        .skill-tag {
+            padding: 5px 9px;
+
+            border-radius: 7px;
+
+            background: #eff6ff;
+
+            color: #475569;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================
+           PROGRAM ACTIONS
+        ========================================= */
+
+        .program-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-top: 18px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid #eef2f7;
+        }
+
+        .small-btn {
+            border: 0;
+
+            border-radius: 9px;
+
+            padding: 9px 12px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
+        }
+
+        .small-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.9;
+        }
+
+        .edit-btn {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .submit-btn {
+            background: #ecfdf5;
+            color: #15803d;
+        }
+
+        .close-btn {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+
+        /* =========================================
+           EMPTY STATE
+        ========================================= */
+
+        .empty-state {
+            background: #ffffff;
+
+            border: 1px dashed #dbe3ee;
+
+            border-radius: 18px;
+
+            padding: 65px 25px;
+
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 58px;
+            height: 58px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            font-size: 25px;
+        }
+
+        .empty-state h3 {
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 18px;
+        }
+
+        .empty-state p {
+            margin: 7px auto 20px;
+
+            max-width: 400px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           MODAL
+        ========================================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 1000;
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+
+            background: rgba(15, 23, 42, 0.55);
+
+            backdrop-filter: blur(3px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(720px, 100%);
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 25px 70px rgba(15, 23, 42, 0.20);
+        }
+
+
+        /* =========================================
+           MODAL HEADER
+        ========================================= */
+
+        .modal-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: flex-start;
+
+            gap: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+
+            color: #172033;
+
+            font-size: 21px;
+        }
+
+        .modal-header p {
+            margin: 5px 0 0;
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+        .close-modal {
+            flex-shrink: 0;
+
+            border: 0;
+
+            background: #f1f5f9;
+
+            color: #475569;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 17px;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .close-modal:hover {
+            background: #e2e8f0;
+            color: #172033;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .program-form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+        }
+
+        .program-form-grid .full {
+            grid-column: 1 / -1;
+        }
+
+        .program-form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #334155;
+
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .program-form-group input,
+        .program-form-group textarea,
+        .program-form-group select {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            color: #172033;
+
+            padding: 12px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .program-form-group textarea {
+            resize: vertical;
+
+            min-height: 100px;
+        }
+
+        .program-form-group input::placeholder,
+        .program-form-group textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .program-form-group input:focus,
+        .program-form-group textarea:focus,
+        .program-form-group select:focus {
+            background: #ffffff;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, 0.08);
+        }
+
+
+        /* =========================================
+           MODAL ACTIONS
+        ========================================= */
+
+        .modal-actions {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid #eef2f7;
+        }
+
+        .secondary-btn {
+            border: 1px solid #e2e8f0;
+
+            background: #ffffff;
+
+            color: #64748b;
+
+            border-radius: 10px;
+
+            padding: 11px 18px;
+
+            font-family: inherit;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .secondary-btn:hover {
+            background: #f8fafc;
+
+            border-color: #cbd5e1;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .programs-toolbar {
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+            .program-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program-form-grid .full {
+                grid-column: auto;
+            }
+
+            .modal-card {
+                padding: 22px;
+            }
+
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                N
+            </div>
+
+            <div>
+
+                <h1>
+                    NexCraft
+                </h1>
+
+                <span>
+                    Trainer Portal
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <div class="sidebar-section-title">
+                Trainer Menu
+            </div>
+
+
+            <a href="/trainer/dashboard.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="/trainer/profile.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                My Profile
+
+            </a>
+
+
+            <a href="/trainer/programs.html" class="nav-item active">
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                My Programs
+
+            </a>
+
+
+            <a href="/trainer/enrollments.html" class="nav-item">
+
+                <span class="nav-icon">
+                    ♙
+                </span>
+
+                Enrollments
+
+            </a>
+
+            <a href="/messages.html" class="nav-item">
+                <span class="nav-icon">✉</span>
+                Messages
+            </a>
+            <a href="/notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                Notifications
+            </a>
+            <a href="/settings.html" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                Settings
+            </a>
+
+
+            <a href="/trainer/statistics.html" class="nav-item">
+            
+                <span class="nav-icon">
+                    ♙
+                </span>
+            
+                Statistics
+            
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="portal-card">
+
+                <div class="portal-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        Trainer Portal
+                    </strong>
+
+                    <p>
+                        Build. Teach. Inspire.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button id="logoutBtn" class="logout-btn" type="button">
+
+                <span>
+                    ↪
+                </span>
+
+                Logout
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    TRAINER WORKSPACE
+                </p>
+
+                <h2>
+                    My Programs
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="status-badge">
+
+                    <span class="status-dot"></span>
+
+                    Trainer
+
+                </div>
+
+            </div>
+
+
+        </header>
+
+
+        <div id="message" class="message">
+        </div>
+
+
+        <!-- PROGRAM TOOLBAR -->
+
+        <section class="programs-toolbar">
+
+
+            <div class="toolbar-title">
+
+                <h3>
+                    Training Programs
+                </h3>
+
+                <p>
+                    Create, manage and submit your training programs.
+                </p>
+
+            </div>
+
+
+            <button id="createProgramBtn" class="primary-btn" type="button">
+
+                <span>
+                    ＋
+                </span>
+
+                Create Program
+
+            </button>
+
+
+        </section>
+
+
+        <!-- PROGRAM CONTAINER -->
+
+        <section id="programContainer">
+
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    Loading programs...
+                </h3>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         PROGRAM MODAL
+    ========================================== -->
+
+    <div id="programModal" class="modal">
+
+
+        <div class="modal-card">
+
+
+            <div class="modal-header">
+
+
+                <div>
+
+                    <h3 id="modalTitle">
+                        Create Training Program
+                    </h3>
+
+                    <p>
+                        Complete the required information below.
+                    </p>
+
+                </div>
+
+
+                <button id="closeModalBtn" class="close-modal" type="button">
+
+                    ×
+
+                </button>
+
+
+            </div>
+
+
+            <form id="programForm">
+
+
+                <div class="program-form-grid">
+
+
+                    <!-- TITLE -->
+
+                    <div class="program-form-group">
+
+                        <label for="title">
+                            Program Title *
+                        </label>
+
+                        <input id="title" required placeholder="e.g. Backend Development with Node.js">
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="program-form-group">
+
+                        <label for="category">
+                            Category *
+                        </label>
+
+                        <input id="category" required placeholder="e.g. Web Development">
+
+                    </div>
+
+
+                    <!-- MODE -->
+
+                    <div class="program-form-group">
+
+                        <label for="mode">
+                            Mode *
+                        </label>
+
+                        <select id="mode" required>
+
+                            <option value="">
+                                Select mode
+                            </option>
+
+                            <option value="Online">
+                                Online
+                            </option>
+
+                            <option value="Offline">
+                                Offline
+                            </option>
+
+                            <option value="Hybrid">
+                                Hybrid
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DURATION -->
+
+                    <div class="program-form-group">
+
+                        <label for="duration">
+                            Duration *
+                        </label>
+
+                        <input id="duration" required placeholder="e.g. 8 weeks">
+
+                    </div>
+
+
+                    <!-- LEVEL -->
+
+                    <div class="program-form-group">
+
+                        <label for="level">
+                            Level
+                        </label>
+
+                        <select id="level">
+
+                            <option value="">
+                                Select level
+                            </option>
+
+                            <option value="Beginner">
+                                Beginner
+                            </option>
+
+                            <option value="Intermediate">
+                                Intermediate
+                            </option>
+
+                            <option value="Advanced">
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- SKILLS -->
+
+                    <div class="program-form-group">
+
+                        <label for="skill_tags">
+                            Skill Tags
+                        </label>
+
+                        <input id="skill_tags" placeholder="Node.js, Express.js, MongoDB">
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="program-form-group full">
+
+                        <label for="description">
+                            Description *
+                        </label>
+
+                        <textarea id="description" required
+                            placeholder="Describe what learners will learn in this program..."></textarea>
+
+                    </div>
+
+
+                    <!-- PREREQUISITES -->
+
+                    <div class="program-form-group full">
+
+                        <label for="prerequisites">
+                            Prerequisites
+                        </label>
+
+                        <textarea id="prerequisites" placeholder="e.g. Basic JavaScript knowledge"></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="modal-actions">
+
+
+                    <button type="button" id="cancelBtn" class="secondary-btn">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit" id="saveProgramBtn" class="primary-btn">
+
+                        Save as Draft
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PROGRAM JAVASCRIPT -->
+
+    <script src="/trainer/js/programs.js"></script>
+
+
+</body>
+
+</html>

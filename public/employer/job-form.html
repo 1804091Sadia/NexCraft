@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job | NexCraft</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+<body data-role="employer" data-page="new-job">
+
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+            <div class="nav-actions">
+                <span class="nav-user" id="navUser"></span>
+                <button type="button" class="btn btn-outline" onclick="logoutUser()">Logout</button>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar"></aside>
+
+        <main class="dashboard-main">
+            <div id="message" class="alert" role="status" aria-live="polite" hidden></div>
+
+            <div class="page-head">
+                <div>
+                    <h1 id="formTitle">Post a Job</h1>
+                    <p>Fields marked * are required. An Admin reviews each job before learners see it.</p>
+                </div>
+                <a href="/employer/jobs.html" class="btn btn-outline">← Back to jobs</a>
+            </div>
+
+            <div id="rejectionNotice" class="notice" hidden></div>
+
+            <form id="jobForm" class="panel panel-body" novalidate>
+                <div class="form-grid">
+                    <div class="form-group span-2">
+                        <label for="title" class="required">Job title</label>
+                        <input id="title" class="form-control" maxlength="120" placeholder="e.g. Junior Node.js Developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category" class="required">Category</label>
+                        <input id="category" class="form-control" list="categoryList" maxlength="80" placeholder="e.g. Web Development" required>
+                        <datalist id="categoryList">
+                            <option value="Web Development"><option value="Mobile Development">
+                            <option value="Data & AI"><option value="Cloud & DevOps">
+                            <option value="Cybersecurity"><option value="UI/UX Design">
+                            <option value="QA & Testing"><option value="IT Support">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label for="job_type" class="required">Employment type</label>
+                        <select id="job_type" class="form-control" required>
+                            <option value="">Choose…</option>
+                            <option>Full-time</option>
+                            <option>Part-time</option>
+                            <option>Internship</option>
+                            <option>Contract</option>
+                        </select>
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="location" class="required">Location</label>
+                        <input id="location" class="form-control" maxlength="120" placeholder="e.g. Dhaka (Hybrid) or Remote" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="salary_min">Salary from (BDT per month)</label>
+                        <input id="salary_min" class="form-control" type="number" min="0" step="1000" inputmode="numeric">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary_max">Salary to (BDT per month)</label>
+                        <input id="salary_max" class="form-control" type="number" min="0" step="1000" inputmode="numeric">
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="skill_tags">Required skills</label>
+                        <input id="skill_tags" class="form-control" list="skillList" placeholder="Type and separate with commas: JavaScript, MongoDB, Git">
+                        <datalist id="skillList"></datalist>
+                        <p class="form-hint">Learners can filter jobs by these skills.</p>
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="description" class="required">Description</label>
+                        <textarea id="description" class="form-control" rows="6" maxlength="5000" placeholder="What the role is about (at least 30 characters)"></textarea>
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="responsibilities">Responsibilities</label>
+                        <textarea id="responsibilities" class="form-control" rows="4" maxlength="3000" placeholder="One per line"></textarea>
+                    </div>
+                    <div class="form-group span-2">
+                        <label for="requirements">Requirements</label>
+                        <textarea id="requirements" class="form-control" rows="4" maxlength="3000" placeholder="One per line"></textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="saveDraft">Save as draft</button>
+                    <button type="submit" class="btn btn-primary" id="submitJob">Submit for approval</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="/js/common.js"></script>
+    <script src="/js/ui.js"></script>
+    <script src="/employer/js/job-form.js"></script>
+</body>
+</html>

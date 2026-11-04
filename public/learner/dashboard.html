@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learner Dashboard | NexCraft</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/icons/favicon-32.png">
+</head>
+
+<body class="module-sidebar-page">
+
+    <header class="site-header">
+
+        <div class="navbar">
+
+            <a href="/index.html" class="logo">
+                <span class="logo-mark">N</span>
+                <span>NexCraft</span>
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="/learner/dashboard.html" class="active">
+                    Dashboard
+                </a>
+
+                <a href="/learner/profile.html">
+                    Profile
+                </a>
+
+                <a href="/learner/jobs.html">
+                    Jobs
+                </a>
+
+                <a href="/learner/training.html">
+                    Training
+                </a>
+                <a href="/messages.html">Messages</a>
+                <a href="/settings.html">Settings</a>
+
+            </nav>
+
+            <div class="nav-actions">
+
+                <button class="btn btn-outline" onclick="logoutUser()">
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <div class="dashboard-layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-title" id="sidebarMenuTitle">
+                Learner Menu
+            </div>
+
+
+            <a href="/learner/dashboard.html" class="active">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+
+            <a href="/learner/profile.html">
+                <span>◯</span>
+                My Profile
+            </a>
+
+
+            <a href="/learner/jobs.html">
+                <span>💼</span>
+                Find Jobs
+            </a>
+
+
+            <a href="/learner/applications.html">
+                <span>▤</span>
+                Applications
+            </a>
+
+
+            <a href="/learner/saved-jobs.html">
+                <span>🔖</span>
+                Saved Jobs
+            </a>
+
+
+            <a href="/learner/training.html">
+                <span>🎓</span>
+                Training
+            </a>
+
+
+            <a href="/learner/skills.html">
+                <span>◆</span>
+                My Skills
+            </a>
+
+
+            <a href="/learner/badges.html">
+                <span>🏆</span>
+                Badges
+            </a>
+
+
+            <div id="trainerSidebarLinks" style="display:none;">
+
+                <div class="sidebar-title">
+                    Trainer
+                </div>
+
+                <a href="/trainer/profile.html">
+                    <span>◉</span>
+                    Trainer Profile
+                </a>
+
+                <a href="/trainer/programs.html">
+                    <span>▣</span>
+                    My Programs
+                </a>
+
+            </div>
+
+
+            <div style="margin-top: 30px;"></div>
+
+
+            <a href="/messages.html">
+                <span>✉</span>
+                Messages
+            </a>
+
+            <div class="sidebar-title">
+                Account
+            </div>
+
+
+            <a href="/notifications.html">
+                <span>🔔</span>
+                Notifications
+            </a>
+
+            <a href="/settings.html">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="#" onclick="logoutUser()">
+                <span>↪</span>
+                Logout
+            </a>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="dashboard-main">
+
+
+            <!-- HEADER -->
+
+            <section class="dashboard-header">
+
+                <div>
+
+                    <p style="
+                    color:#2563eb;
+                    font-size:13px;
+                    font-weight:700;
+                    text-transform:uppercase;
+                    letter-spacing:.8px;
+                    margin-bottom:5px;
+                    ">
+                        <span id="dashboardTitle">Learner Dashboard</span>
+                    </p>
+
+                    <h1>
+                        Welcome back,
+                        <span id="userName">
+                            Learner
+                        </span>
+                        👋
+                    </h1>
+
+                    <p id="dashboardDescription">
+                        Keep learning, build your skills and discover
+                        your next opportunity.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ALERT -->
+
+            <div id="message" class="alert" style="display:none;"></div>
+
+
+            <!-- STATS -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Applications
+                    </div>
+
+                    <div class="stat-value">
+                        0
+                    </div>
+
+                    <div style="
+                    color:#64748b;
+                    font-size:12px;
+                    margin-top:5px;
+                    ">
+                        Total applications
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Saved Jobs
+                    </div>
+
+                    <div class="stat-value">
+                        0
+                    </div>
+
+                    <div style="
+                    color:#64748b;
+                    font-size:12px;
+                    margin-top:5px;
+                    ">
+                        Jobs saved
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+                
+                    <div class="stat-label">
+                        Skills
+                    </div>
+                
+                    <div class="stat-value" id="skillCount">
+                        0
+                    </div>
+                
+                    <div style="
+                        color:#64748b;
+                        font-size:12px;
+                        margin-top:5px;
+                    ">
+                        Skills added
+                    </div>
+                
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Training
+                    </div>
+
+                    <div class="stat-value">
+                        0
+                    </div>
+
+                    <div style="
+                    color:#64748b;
+                    font-size:12px;
+                    margin-top:5px;
+                    ">
+                        Programs enrolled
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MAIN CONTENT GRID -->
+
+            <section style="
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            gap:22px;
+            ">
+
+
+                
+
+                <!-- PROFILE CARD -->
+                
+                <div class="card">
+                
+                    <div style="
+                        padding:25px 28px;
+                        border-bottom:1px solid #e2e8f0;
+                        display:flex;
+                        align-items:center;
+                        justify-content:space-between;
+                    ">
+                
+                        <div>
+                
+                            <h2 id="profileSectionTitle" style="
+                                font-size:19px;
+                                margin-bottom:4px;
+                            ">
+                                Your Profile
+                            </h2>
+                
+                            <p id="profileSectionDescription" style="
+                                color:#64748b;
+                                font-size:13px;
+                            ">
+                                View and manage your learner profile.
+                            </p>
+                
+                        </div>
+                
+                        <a href="/learner/profile.html" id="viewProfileButton" class="btn btn-secondary">
+                            View Profile
+                        </a>
+                
+                    </div>
+                
+                
+                    <div style="
+                        padding:28px;
+                        display:flex;
+                        align-items:center;
+                        gap:22px;
+                    ">
+                
+                        <!-- Profile Image -->
+                
+                        <div class="profile-image-placeholder" id="dashboardProfileImage" style="
+                                width:90px;
+                                height:90px;
+                                flex-shrink:0;
+                            ">
+                
+                            <span id="profileInitial">
+                                L
+                            </span>
+                
+                        </div>
+                
+                
+                        <!-- Basic Information -->
+                
+                        <div>
+                
+                            <h3 id="profileName" style="
+                                    font-size:21px;
+                                    margin-bottom:5px;
+                                ">
+                                Learner
+                            </h3>
+                
+                
+                            <p id="profileEmail" style="
+                                    color:#64748b;
+                                    margin-bottom:12px;
+                                ">
+                                Loading...
+                            </p>
+                
+                
+                            <div id="accountRoleBadges" style="
+                                display:flex;
+                                gap:8px;
+                                flex-wrap:wrap;
+                            ">
+                
+                                <span id="learnerRoleBadge" style="
+                                    background:#eff6ff;
+                                    color:#2563eb;
+                                    padding:5px 10px;
+                                    border-radius:20px;
+                                    font-size:12px;
+                                    font-weight:600;
+                                ">
+                                    Learner
+                                </span>
+                
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="card">
+
+                    <div style="
+                    padding:25px 25px 20px;
+                    border-bottom:1px solid #e2e8f0;
+                    ">
+
+                        <h2 style="
+                        font-size:19px;
+                        margin-bottom:4px;
+                        ">
+                            Quick Actions
+                        </h2>
+
+                        <p style="
+                        color:#64748b;
+                        font-size:13px;
+                        ">
+                            Jump into your most-used areas.
+                        </p>
+
+                    </div>
+
+
+                    <div style="padding:20px;">
+
+                        <a href="/learner/jobs.html" class="quick-action">
+                            <span class="quick-action-icon">
+                                💼
+                            </span>
+
+                            <span>
+                                <strong>Find Jobs</strong>
+                                <small>
+                                    Explore opportunities
+                                </small>
+                            </span>
+
+                            <span class="quick-arrow">
+                                →
+                            </span>
+                        </a>
+
+
+                        <a href="/learner/training.html" class="quick-action">
+                            <span class="quick-action-icon">
+                                🎓
+                            </span>
+
+                            <span>
+                                <strong>Training</strong>
+                                <small>
+                                    Learn new skills
+                                </small>
+                            </span>
+
+                            <span class="quick-arrow">
+                                →
+                            </span>
+                        </a>
+
+                        <a href="/learner/skills.html" class="quick-action">
+                            <span class="quick-action-icon">
+                                ◆
+                            </span>
+
+                            <span>
+                                <strong>Skills</strong>
+                                <small>
+                                    Manage your skills
+                                </small>
+                            </span>
+
+                            <span class="quick-arrow">
+                                →
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MY SKILLS -->
+            
+            <section style="
+                margin-top:22px;
+            ">
+            
+                <div class="card">
+            
+                    <div style="
+                        padding:22px 25px;
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        border-bottom:1px solid #e2e8f0;
+                    ">
+            
+                        <div>
+            
+                            <h2 style="
+                                font-size:18px;
+                                margin-bottom:4px;
+                            ">
+                                My Skills
+                            </h2>
+            
+                            <p style="
+                                color:#64748b;
+                                font-size:13px;
+                            ">
+                                Your current skills.
+                            </p>
+            
+                        </div>
+            
+                        <a href="/learner/skills.html" class="link-action" style="
+                            color:#2563eb;
+                            font-size:13px;
+                            font-weight:600;
+                        ">
+                            View All
+                        </a>
+            
+                    </div>
+            
+            
+                    <div id="dashboardSkills" style="
+                            padding:25px;
+                            display:flex;
+                            flex-wrap:wrap;
+                            gap:10px;
+                        ">
+            
+                        <p style="
+                            color:#64748b;
+                            font-size:13px;
+                        ">
+                            No skills added yet.
+                        </p>
+            
+                    </div>
+            
+                </div>
+            
+            </section>
+
+
+            <!-- LOWER SECTION -->
+
+            <section style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:22px;
+            margin-top:22px;
+            ">
+
+
+                <!-- RECENT APPLICATIONS -->
+
+                <div class="card">
+
+                    <div style="
+                    padding:22px 25px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    border-bottom:1px solid #e2e8f0;
+                    ">
+
+                        <div>
+
+                            <h2 style="
+                            font-size:18px;
+                            ">
+                                Recent Applications
+                            </h2>
+
+                            <p style="
+                            color:#64748b;
+                            font-size:13px;
+                            ">
+                                Track your latest applications.
+                            </p>
+
+                        </div>
+
+
+                        <a href="/learner/applications.html" class="link-action" style="
+                        color:#2563eb;
+                        font-size:13px;
+                        font-weight:600;
+                        ">
+                            View All
+                        </a>
+
+                    </div>
+
+
+                    <div style="
+                    padding:40px 25px;
+                    text-align:center;
+                    ">
+
+                        <div style="
+                        font-size:34px;
+                        margin-bottom:10px;
+                        ">
+                            📄
+                        </div>
+
+                        <h3 style="
+                        font-size:16px;
+                        margin-bottom:5px;
+                        ">
+                            No applications yet
+                        </h3>
+
+                        <p style="
+                        color:#64748b;
+                        font-size:13px;
+                        margin-bottom:18px;
+                        ">
+                            Start exploring jobs and apply
+                            for positions that match your skills.
+                        </p>
+
+                        <a href="/learner/jobs.html" class="btn btn-primary">
+                            Explore Jobs
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TRAINING -->
+
+                <div class="card">
+
+                    <div style="
+                    padding:22px 25px;
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    border-bottom:1px solid #e2e8f0;
+                    ">
+
+                        <div>
+
+                            <h2 style="
+                            font-size:18px;
+                            ">
+                                My Training
+                            </h2>
+
+                            <p style="
+                            color:#64748b;
+                            font-size:13px;
+                            ">
+                                Your learning programs.
+                            </p>
+
+                        </div>
+
+
+                        <a href="/learner/training.html" class="link-action" style="
+                        color:#2563eb;
+                        font-size:13px;
+                        font-weight:600;
+                        ">
+                            View All
+                        </a>
+
+                    </div>
+
+
+                    <div style="
+                    padding:40px 25px;
+                    text-align:center;
+                    ">
+
+                        <div style="
+                        font-size:34px;
+                        margin-bottom:10px;
+                        ">
+                            🎓
+                        </div>
+
+                        <h3 style="
+                        font-size:16px;
+                        margin-bottom:5px;
+                        ">
+                            No training enrolled
+                        </h3>
+
+                        <p style="
+                        color:#64748b;
+                        font-size:13px;
+                        margin-bottom:18px;
+                        ">
+                            Discover training programs and
+                            continue developing your skills.
+                        </p>
+
+                        <a href="/learner/training.html" class="btn btn-primary">
+                            Browse Training
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section style="margin-top:30px;" aria-label="Graduate showcase">
+                <div id="graduateShowcase"></div>
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="/js/common.js"></script>
+    <script src="/learner/js/dashboard.js"></script>
+    <script src="/js/showcase.js"></script>
+
+</body>
+
+</html>
